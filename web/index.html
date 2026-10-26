@@ -1,0 +1,277 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Glove Intake Form - ITR Hockey</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Quattrocento:wght@400;700&family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <aside class="sidebar">
+    <a class="sidebar-brand" href="https://www.itrhockeyllc.com/">ITR Hockey</a>
+    <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav">Menu</button>
+    <nav id="site-nav" class="site-nav">
+      <a href="https://www.itrhockeyllc.com/">Home</a>
+      <a href="https://www.itrhockeyllc.com/glove-repalming.html">Glove Repalming</a>
+      <a href="https://www.itrhockeyllc.com/common-questions.html">Common Questions</a>
+      <a href="https://www.itrhockeyllc.com/nhl--pro-work-gallery.html">NHL &amp; Pro Work Gallery</a>
+      <a href="./" class="active" aria-current="page">Glove Intake Form</a>
+      <a href="https://www.itrhockeyllc.com/contact-us.html">Contact Us</a>
+    </nav>
+    <a class="phone" href="tel:+18102758629">810.275.8629</a>
+  </aside>
+
+  <main class="wrapper">
+    <header class="banner">
+      <img class="banner-logo" src="assets/itr-logo.png" alt="ITR Hockey" width="611" height="285">
+      <h1>Glove Intake Form</h1>
+      <p>Repalming spec sheet</p>
+    </header>
+
+    <div class="content">
+      <p class="intro">
+        Tell us what you'd like done and we'll confirm your order by email before you ship.
+        Current turnaround is about 4 weeks standard. Expedited service (3&ndash;5 business days)
+        doubles the invoice and bumps you to the top of the queue.
+      </p>
+      <p class="demo-note" id="demo-note" hidden>
+        Demo mode &mdash; no Apps Script URL is set in <code>config.js</code>, so submissions aren't saved.
+      </p>
+
+      <form id="intake-form" autocomplete="on">
+        <fieldset>
+          <legend><h2>Intake Specs</h2></legend>
+          <div class="grid">
+            <div class="field">
+              <label for="make">Make <span class="req">*</span></label>
+              <input id="make" name="make" list="makes" required placeholder="e.g. Bauer">
+              <datalist id="makes"></datalist>
+            </div>
+            <div class="field">
+              <label for="model">Model <span class="req">*</span></label>
+              <input id="model" name="model" required placeholder="e.g. Supreme Mach">
+            </div>
+            <div class="field">
+              <label for="quantity"># of Gloves / Pairs <span class="req">*</span></label>
+              <div class="inline">
+                <input id="quantity" name="quantity" type="number" min="1" max="50" value="1" required>
+                <select name="quantityUnit" aria-label="Unit">
+                  <option>Pair(s)</option>
+                  <option>Single glove(s)</option>
+                </select>
+              </div>
+            </div>
+            <div class="field">
+              <span class="label">Service</span>
+              <div class="choices">
+                <label class="choice"><input type="radio" name="service" value="Standard" checked> Standard <small>~4 weeks</small></label>
+                <label class="choice"><input type="radio" name="service" value="Expedited"> Expedited <small>3&ndash;5 days, 2&times; cost</small></label>
+              </div>
+            </div>
+          </div>
+        </fieldset>
+
+        <fieldset>
+          <legend><h2>Palms</h2></legend>
+          <div class="grid">
+            <div class="field">
+              <label for="palmMaterial">Palm Material <span class="req">*</span></label>
+              <select id="palmMaterial" name="palmMaterial" required data-catalog="palm" data-extras></select>
+            </div>
+            <div class="field" data-cascade-for="palmMaterial">
+              <label for="palmOption">Color / Thickness <span class="req">*</span></label>
+              <select id="palmOption" name="palmOption" required></select>
+            </div>
+          </div>
+
+          <div class="field">
+            <span class="label">Overlay</span>
+            <div class="choices">
+              <label class="choice"><input type="radio" name="overlay" value="Yes"> Yes</label>
+              <label class="choice"><input type="radio" name="overlay" value="No" checked> No</label>
+            </div>
+          </div>
+
+          <div class="grid" data-show-when="overlay=Yes" hidden>
+            <div class="field">
+              <label for="overlayMaterial">Overlay Material <span class="req">*</span></label>
+              <select id="overlayMaterial" name="overlayMaterial" required data-catalog="palm"></select>
+            </div>
+            <div class="field" data-cascade-for="overlayMaterial">
+              <label for="overlayOption">Color / Thickness <span class="req">*</span></label>
+              <select id="overlayOption" name="overlayOption" required></select>
+            </div>
+            <div class="field span-2">
+              <label for="overlayStyle">Overlay Style</label>
+              <input id="overlayStyle" name="overlayStyle" placeholder="e.g. thumb &amp; index finger, full palm, custom pattern">
+            </div>
+          </div>
+
+          <div class="field">
+            <label for="palmInstructions">Special Instructions</label>
+            <textarea id="palmInstructions" name="palmInstructions" rows="2"></textarea>
+          </div>
+        </fieldset>
+
+        <fieldset>
+          <legend><h2>Gussets</h2></legend>
+          <div class="field">
+            <span class="label">Replace gussets?</span>
+            <div class="choices">
+              <label class="choice"><input type="radio" name="gussets" value="Yes"> Yes</label>
+              <label class="choice"><input type="radio" name="gussets" value="No" checked> No</label>
+            </div>
+          </div>
+
+          <div data-show-when="gussets=Yes" hidden>
+            <div class="grid">
+              <div class="field">
+                <label for="gussetMaterial">Gusset Material <span class="req">*</span></label>
+                <select id="gussetMaterial" name="gussetMaterial" required data-catalog="gusset"></select>
+              </div>
+              <div class="field" data-cascade-for="gussetMaterial">
+                <label for="gussetColor">Color <span class="req">*</span></label>
+                <select id="gussetColor" name="gussetColor" required></select>
+              </div>
+            </div>
+            <div class="field">
+              <label for="gussetInstructions">Special Instructions</label>
+              <textarea id="gussetInstructions" name="gussetInstructions" rows="2"></textarea>
+            </div>
+          </div>
+        </fieldset>
+
+        <fieldset>
+          <legend><h2>Glove Mods <span class="optional">optional</span></h2></legend>
+          <p class="hint">Prices vary based on services selected, materials used, and glove make/model. We'll send an estimate before starting.</p>
+
+          <div class="field">
+            <span class="label">Backhand Pads</span>
+            <div class="choices" data-radio-list="backhandPads"></div>
+          </div>
+          <div class="field">
+            <span class="label">Shot Blockers</span>
+            <div class="choices" data-radio-list="shotBlockers"></div>
+          </div>
+          <div class="field">
+            <span class="label">Cuff Reductions / Mods</span>
+            <div class="choices" data-checkbox-list="cuffMods"></div>
+          </div>
+          <div class="field">
+            <span class="label">Other</span>
+            <div class="choices">
+              <label class="choice"><input type="checkbox" name="cleaning" value="Yes"> Ozone antibacterial cleaning</label>
+              <label class="choice"><input type="checkbox" name="gussetTaper" value="Yes"> Gusset height reduction / taper</label>
+              <label class="choice"><input type="checkbox" name="embroidery" value="Yes"> Letter / number embroidery</label>
+            </div>
+          </div>
+          <div class="field" data-show-when="embroidery=Yes" hidden>
+            <label for="embroideryText">Embroidery details <span class="req">*</span></label>
+            <input id="embroideryText" name="embroideryText" required placeholder="Text / numbers, color, and placement (e.g. &quot;#19&quot; white, left cuff)">
+          </div>
+        </fieldset>
+
+        <fieldset>
+          <legend><h2>Additional Notes / Comments / Mods</h2></legend>
+          <div class="field">
+            <label for="notes" class="sr-only">Additional notes</label>
+            <textarea id="notes" name="notes" rows="4" placeholder="Anything else we should know?"></textarea>
+          </div>
+        </fieldset>
+
+        <fieldset>
+          <legend><h2>Customer Contact Info</h2></legend>
+          <div class="grid">
+            <div class="field">
+              <label for="name">Name <span class="req">*</span></label>
+              <input id="name" name="name" autocomplete="name" required>
+            </div>
+            <div class="field">
+              <label for="email">Email <span class="req">*</span></label>
+              <input id="email" name="email" type="email" autocomplete="email" required>
+            </div>
+            <div class="field">
+              <label for="phone">Phone <span class="req">*</span></label>
+              <input id="phone" name="phone" type="tel" autocomplete="tel" required>
+            </div>
+          </div>
+
+          <span class="label">Return Address</span>
+          <div class="grid">
+            <div class="field span-2">
+              <label for="address1" class="sub">Street <span class="req">*</span></label>
+              <input id="address1" name="address1" autocomplete="address-line1" required>
+            </div>
+            <div class="field span-2">
+              <label for="address2" class="sub">Apt / Suite</label>
+              <input id="address2" name="address2" autocomplete="address-line2">
+            </div>
+            <div class="field">
+              <label for="city" class="sub">City <span class="req">*</span></label>
+              <input id="city" name="city" autocomplete="address-level2" required>
+            </div>
+            <div class="grid tight">
+              <div class="field">
+                <label for="state" class="sub">State / Prov. <span class="req">*</span></label>
+                <input id="state" name="state" autocomplete="address-level1" required>
+              </div>
+              <div class="field">
+                <label for="zip" class="sub">ZIP / Postal <span class="req">*</span></label>
+                <input id="zip" name="zip" autocomplete="postal-code" required>
+              </div>
+            </div>
+          </div>
+
+          <div class="hp" aria-hidden="true">
+            <label for="website">Website</label>
+            <input id="website" name="website" tabindex="-1" autocomplete="off">
+          </div>
+        </fieldset>
+
+        <p class="form-error" id="form-error" role="alert" hidden></p>
+        <div class="actions">
+          <button type="submit" class="button" id="submit">Submit Intake Form</button>
+        </div>
+      </form>
+
+      <section class="success" id="success" hidden tabindex="-1" aria-live="polite">
+        <h2>Thanks &mdash; we've got it.</h2>
+        <p class="order-label">Your order number</p>
+        <p class="order-id" id="order-id"></p>
+        <p>
+          We'll review your specs and email you to confirm before you ship.
+          A copy of your form was sent to <strong id="success-email"></strong>.
+        </p>
+        <div class="ship-to">
+          <p class="label">When confirmed, ship your gloves to</p>
+          <address>
+            Ian Roberts - ITR Hockey<br>
+            2767 Derwent Drive SW<br>
+            Roanoke, VA 24015
+          </address>
+          <p class="hint">Put a note with your order number inside the box.</p>
+        </div>
+        <button type="button" class="button button-quiet" id="another">Submit another order</button>
+      </section>
+    </div>
+
+    <footer class="site-footer">
+      <div>
+        <h3>Proudly based in Virginia</h3>
+        <p>Contact Us <a href="tel:+18102758629">810.275.8629</a></p>
+      </div>
+      <div>
+        <h3>Mailing Address</h3>
+        <p>Ian Roberts - ITR Hockey<br>2767 Derwent Drive SW<br>Roanoke, VA 24015</p>
+      </div>
+    </footer>
+  </main>
+
+  <script src="options.js"></script>
+  <script src="config.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

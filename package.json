@@ -1,0 +1,11 @@
+{
+  "name": "itr-glove-intake",
+  "version": "0.1.0",
+  "private": true,
+  "description": "ITR Hockey glove intake form backed by a Google Sheet via Apps Script",
+  "type": "module",
+  "scripts": {
+    "test": "node --test test/*.test.mjs",
+    "serve": "python3 -m http.server 8080 -d web"
+  }
+}
